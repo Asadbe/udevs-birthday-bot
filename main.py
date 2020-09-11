@@ -27,9 +27,9 @@ con = psycopg2.connect(
 cur = con.cursor()
         
 
-cur.execute("create table users (id serial ,name text,birth_date date)")
-con.commit()
-con.close()        
+# cur.execute("create table users (id serial ,name text,birth_date date)")
+# con.commit()
+# con.close()        
         
 @bot.message_handler(commands=[ 'start'])
 def main(message):
@@ -71,7 +71,7 @@ def process_name_step(message):
     try:
         user_id = message.from_user.id
         user_data[user_id] = User(message.text)
-        msg = bot.send_message(message.chat.id ,  "Tug'ilgan sana yuboring format:DD.MM.YYYY")
+        msg = bot.send_message(message.chat.id ,  "Tug'ilgan sana yuboring format: MM.DD.YYYY")
         bot.register_next_step_handler(msg, process_birth_step)
     except Exception as e:
         bot.reply_to(message, "Noto'g'ri ma'lumot kiritildi /add orqali qaytadan urinib ko'ring")
@@ -89,7 +89,8 @@ def process_birth_step(message):
             password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353"  )
 
         cur = con.cursor()
-        cur.execute("insert into users values (%s,%s)" , (user.name , user.birth))
+        print(message.text)
+        cur.execute("insert into users (name,birth_date) values (%s,%s)" , (user.name , user.birth))
         con.commit()
         cur.close()        
         bot.send_message(message.chat.id,"Malumotlar bazasiga qo'shildi ")
