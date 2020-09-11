@@ -19,10 +19,10 @@ class User:
         
 con = psycopg2.connect(
           host = "ec2-3-95-87-221.compute-1.amazonaws.com",
-            database = "d1hm1jpq9a9uld",
-            user = "eyowqgohugcddk",
+            database = "d780dvpc51iu7k",
+            user = "kqmwcuxoywcrjz",
             port = "5432",
-            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a" )
+            password = "5f0638f25d4cde46588356eebc327efbc96b25457bdfaebe05a91acde8618e9f" )
 
 cur = con.cursor()
         
@@ -36,10 +36,10 @@ def main(message):
     while True:  
         con = psycopg2.connect(
             host = "ec2-3-95-87-221.compute-1.amazonaws.com",
-            database = "d1hm1jpq9a9uld",
-            user = "eyowqgohugcddk",
+            database = "d780dvpc51iu7k",
+            user = "kqmwcuxoywcrjz",
             port = "5432",
-            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a"   )
+            password = "5f0638f25d4cde46588356eebc327efbc96b25457bdfaebe05a91acde8618e9f"   )
 
         cur = con.cursor()
         
@@ -83,10 +83,10 @@ def process_birth_step(message):
         user.birth = message.text
         con = psycopg2.connect(
              host = "ec2-3-95-87-221.compute-1.amazonaws.com",
-            database = "d1hm1jpq9a9uld",
-            user = "eyowqgohugcddk",
+            database = "d780dvpc51iu7k",
+            user = "kqmwcuxoywcrjz",
             port = "5432",
-            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a"  )
+            password = "5f0638f25d4cde46588356eebc327efbc96b25457bdfaebe05a91acde8618e9f"  )
 
         cur = con.cursor()
         cur.execute("insert into users values (%s,%s)" , (user.name , user.birth))
@@ -108,10 +108,10 @@ def process_remove_step(message):
         tr = message.text
         con = psycopg2.connect(
            host = "ec2-3-95-87-221.compute-1.amazonaws.com",
-            database = "d1hm1jpq9a9uld",
-            user = "eyowqgohugcddk",
+            database = "d780dvpc51iu7k",
+            user = "kqmwcuxoywcrjz",
             port = "5432",
-            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a"  )
+            password = "5f0638f25d4cde46588356eebc327efbc96b25457bdfaebe05a91acde8618e9f"  )
 
         cur = con.cursor()
         cur.execute("delete from users where id = "+tr)
@@ -129,10 +129,10 @@ def process_remove_step(message):
 def main(message):
     con = psycopg2.connect(
         host = "ec2-3-95-87-221.compute-1.amazonaws.com",
-            database = "d1hm1jpq9a9uld",
-            user = "eyowqgohugcddk",
+            database = "d780dvpc51iu7k",
+            user = "kqmwcuxoywcrjz",
             port = "5432",
-            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a"  )
+            password = "5f0638f25d4cde46588356eebc327efbc96b25457bdfaebe05a91acde8618e9f"  )
 
     cur = con.cursor()
     cur.execute("SELECT  name ,birth_date, id  from users;")
