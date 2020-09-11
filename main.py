@@ -27,9 +27,9 @@ con = psycopg2.connect(
 cur = con.cursor()
         
 
-cur.execute("create table users (id serial ,name text,birth_date date)")
-con.commit()
-con.close()        
+# cur.execute("create table users (id serial ,name text,birth_date date)")
+# con.commit()
+# con.close()        
         
 @bot.message_handler(commands=[ 'start'])
 def main(message):
