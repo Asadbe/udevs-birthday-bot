@@ -82,10 +82,11 @@ def process_birth_step(message):
         user = user_data[user_id]
         user.birth = message.text
         con = psycopg2.connect(
-            host = "localhost",
-            database = "deleverdb",
-            user = "delever",
-            password = "delever" )
+             host = "ec2-3-95-87-221.compute-1.amazonaws.com",
+            database = "d1hm1jpq9a9uld",
+            user = "eyowqgohugcddk",
+            port = "5432",
+            password = "26851368be484570f389c0e1e375c56c944daabd58fa6812815fe6d4af432a4a"  )
 
         cur = con.cursor()
         cur.execute("insert into users values (%s,%s)" , (user.name , user.birth))
