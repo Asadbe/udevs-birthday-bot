@@ -18,11 +18,11 @@ class User:
         self.birth = ''
         
 con = psycopg2.connect(
-          host = "ec2-34-236-215-156.compute-1.amazonaws.com",
-            database = "d1b9n2d2dc70ue",
-            user = "lmsbnzolrduahl",
+          host = "ec2-3-222-150-253.compute-1.amazonaws.com",
+            database = "ddrsrbmbeplv8n",
+            user = "qblnsbutvvoobf",
             port = "5432",
-            password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353" )
+            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15" )
 
 cur = con.cursor()
         
@@ -35,11 +35,11 @@ cur = con.cursor()
 def main(message):
     while True:  
         con = psycopg2.connect(
-            host = "ec2-34-236-215-156.compute-1.amazonaws.com",
-            database = "d1b9n2d2dc70ue",
-            user = "lmsbnzolrduahl",
+            host = "ec2-3-222-150-253.compute-1.amazonaws.com",
+            database = "ddrsrbmbeplv8n",
+            user = "qblnsbutvvoobf",
             port = "5432",
-            password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353"   )
+            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"   )
 
         cur = con.cursor()
         
@@ -82,11 +82,11 @@ def process_birth_step(message):
         user = user_data[user_id]
         user.birth = message.text
         con = psycopg2.connect(
-             host = "ec2-34-236-215-156.compute-1.amazonaws.com",
-            database = "d1b9n2d2dc70ue",
-            user = "lmsbnzolrduahl",
+             host = "ec2-3-222-150-253.compute-1.amazonaws.com",
+            database = "ddrsrbmbeplv8n",
+            user = "qblnsbutvvoobf",
             port = "5432",
-            password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353"  )
+            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
 
         cur = con.cursor()
         print(message.text)
@@ -108,11 +108,11 @@ def process_remove_step(message):
     try:
         tr = message.text
         con = psycopg2.connect(
-           host = "ec2-34-236-215-156.compute-1.amazonaws.com",
-            database = "d1b9n2d2dc70ue",
-            user = "lmsbnzolrduahl",
+           host = "ec2-3-222-150-253.compute-1.amazonaws.com",
+            database = "ddrsrbmbeplv8n",
+            user = "qblnsbutvvoobf",
             port = "5432",
-            password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353"  )
+            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
 
         cur = con.cursor()
         cur.execute("delete from users where id = "+tr)
@@ -129,11 +129,11 @@ def process_remove_step(message):
 @bot.message_handler(commands=['get'])
 def main(message):
     con = psycopg2.connect(
-        host = "ec2-34-236-215-156.compute-1.amazonaws.com",
-            database = "d1b9n2d2dc70ue",
-            user = "lmsbnzolrduahl",
+        host = "ec2-3-222-150-253.compute-1.amazonaws.com",
+            database = "ddrsrbmbeplv8n",
+            user = "qblnsbutvvoobf",
             port = "5432",
-            password = "8ead5117766660896d54ba46035e56590b61f256d0fbd06aa219e5b161b72353"  )
+            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
 
     cur = con.cursor()
     cur.execute("SELECT  name ,birth_date, id  from users;")
