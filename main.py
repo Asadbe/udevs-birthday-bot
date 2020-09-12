@@ -9,37 +9,31 @@ from datetime import datetime
 
 bot  = telebot.TeleBot(config.token)
 
-user_data = {}
 
-
-class User:
-    def __init__(self,name):
-        self.name = name
-        self.birth = ''
         
 con = psycopg2.connect(
-          host = "ec2-3-222-150-253.compute-1.amazonaws.com",
-            database = "ddrsrbmbeplv8n",
-            user = "qblnsbutvvoobf",
+          host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            database = "do3q1sk5tpkh3",
+            user = "gbulenwwwqikqf",
             port = "5432",
-            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15" )
+            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"  )
 
 cur = con.cursor()
         
 
-# cur.execute("create table users (id serial ,name text,birth_date date)")
-# con.commit()
-# con.close()        
+cur.execute("create table users (id serial ,name text,birth_date date)")
+con.commit()
+con.close()        
         
 @bot.message_handler(commands=[ 'start'])
 def main(message):
     while True:  
         con = psycopg2.connect(
-            host = "ec2-3-222-150-253.compute-1.amazonaws.com",
-            database = "ddrsrbmbeplv8n",
-            user = "qblnsbutvvoobf",
+            host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            database = "do3q1sk5tpkh3",
+            user = "gbulenwwwqikqf",
             port = "5432",
-            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"   )
+            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"    )
 
         cur = con.cursor()
         
@@ -63,14 +57,14 @@ def main(message):
 
 
 @bot.message_handler(commands=['add'])
-def main(message):
+def name(message):
         msg = bot.send_message(message.chat.id ,  "Ism yuboring")
         bot.register_next_step_handler(msg, process_name_step)
     
 def process_name_step(message):
     try:
-        user_id = message.from_user.id
-        user_data[user_id] = User(message.text)
+        global ism
+        ism = message.text
         msg = bot.send_message(message.chat.id ,  "Tug'ilgan sana yuboring format: MM.DD.YYYY")
         bot.register_next_step_handler(msg, process_birth_step)
     except Exception as e:
@@ -78,19 +72,18 @@ def process_name_step(message):
         
 def process_birth_step(message):
     try:
-        user_id = message.from_user.id
-        user = user_data[user_id]
-        user.birth = message.text
+      
+        birth = message.text
         con = psycopg2.connect(
-             host = "ec2-3-222-150-253.compute-1.amazonaws.com",
-            database = "ddrsrbmbeplv8n",
-            user = "qblnsbutvvoobf",
+             host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            database = "do3q1sk5tpkh3",
+            user = "gbulenwwwqikqf",
             port = "5432",
-            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
+            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"   )
 
         cur = con.cursor()
-        print(message.text)
-        cur.execute("insert into users (name,birth_date) values (%s,%s)" , (user.name , user.birth))
+        print(ism)
+        cur.execute("insert into users (name,birth_date) values (%s,%s)" , (ism , birth))
         con.commit()
         cur.close()        
         bot.send_message(message.chat.id,"Malumotlar bazasiga qo'shildi ")
@@ -100,7 +93,7 @@ def process_birth_step(message):
     
 
 @bot.message_handler(commands=['remove'])
-def main(message):
+def send(message):
         msg = bot.send_message(message.chat.id ,  "Id yuboring")
         bot.register_next_step_handler(msg, process_remove_step)
         
@@ -108,11 +101,11 @@ def process_remove_step(message):
     try:
         tr = message.text
         con = psycopg2.connect(
-           host = "ec2-3-222-150-253.compute-1.amazonaws.com",
-            database = "ddrsrbmbeplv8n",
-            user = "qblnsbutvvoobf",
+           host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            database = "do3q1sk5tpkh3",
+            user = "gbulenwwwqikqf",
             port = "5432",
-            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
+            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"   )
 
         cur = con.cursor()
         cur.execute("delete from users where id = "+tr)
@@ -127,13 +120,13 @@ def process_remove_step(message):
     
     
 @bot.message_handler(commands=['get'])
-def main(message):
+def get(message):
     con = psycopg2.connect(
-        host = "ec2-3-222-150-253.compute-1.amazonaws.com",
-            database = "ddrsrbmbeplv8n",
-            user = "qblnsbutvvoobf",
+        host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            database = "do3q1sk5tpkh3",
+            user = "gbulenwwwqikqf",
             port = "5432",
-            password = "d562b8b974c3c7bdfbb5feedb8946096a2030a275a89be6af5d7fde2aeca0c15"  )
+            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"   )
 
     cur = con.cursor()
     cur.execute("SELECT  name ,birth_date, id  from users;")
