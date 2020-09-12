@@ -75,7 +75,7 @@ def process_birth_step(message):
       
         birth = message.text
         con = psycopg2.connect(
-             host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            host = "ec2-54-144-177-189.compute-1.amazonaws.com",
             database = "do3q1sk5tpkh3",
             user = "gbulenwwwqikqf",
             port = "5432",
@@ -101,7 +101,7 @@ def process_remove_step(message):
     try:
         tr = message.text
         con = psycopg2.connect(
-           host = "ec2-54-144-177-189.compute-1.amazonaws.com",
+            host = "ec2-54-144-177-189.compute-1.amazonaws.com",
             database = "do3q1sk5tpkh3",
             user = "gbulenwwwqikqf",
             port = "5432",
@@ -123,10 +123,10 @@ def process_remove_step(message):
 def get(message):
     con = psycopg2.connect(
         host = "ec2-54-144-177-189.compute-1.amazonaws.com",
-            database = "do3q1sk5tpkh3",
-            user = "gbulenwwwqikqf",
-            port = "5432",
-            password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"   )
+        database = "do3q1sk5tpkh3",
+        user = "gbulenwwwqikqf",
+        port = "5432",
+        password = "412d90874a3f045ad4bc30a3fe37d13ad0d8515124de0d055c26dc456f6afc4f"   )
 
     cur = con.cursor()
     cur.execute("SELECT  name ,birth_date, id  from users;")
