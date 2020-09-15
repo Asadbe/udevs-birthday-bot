@@ -120,7 +120,7 @@ def process_remove_step(message):
         
         con.commit()
         cur.close()        
-        bot.send_message(message.chat.id,"Malumotlar bazasidan o'chirildi " , reply_markup=none)
+        bot.send_message(message.chat.id,"Malumotlar bazasidan o'chirildi " )
         
     except Exception as e:
         bot.reply_to(message, "Noto'g'ri ma'lumot kiritildi /remove orqali qaytadan urinib ko'ring")
