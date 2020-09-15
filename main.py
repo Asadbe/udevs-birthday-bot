@@ -66,14 +66,14 @@ def main(message):
 
 @bot.message_handler(commands=['add'])
 def name(message):
-        msg = bot.send_message(message.chat.id ,  "Ism yuboring" , reply_markup=telegram.ReplyKeyboardRemove())
+        msg = bot.send_message(message.chat.id ,  "Ism yuboring" )
         bot.register_next_step_handler(msg, process_name_step)
     
 def process_name_step(message):
     try:
         global ism
         ism = message.text
-        msg = bot.send_message(message.chat.id ,  "Tug'ilgan sana yuboring format: MM.DD.YYYY" , reply_markup=telegram.ReplyKeyboardRemove())
+        msg = bot.send_message(message.chat.id ,  "Tug'ilgan sana yuboring format: MM.DD.YYYY" )
         bot.register_next_step_handler(msg, process_birth_step)
     except Exception as e:
         bot.reply_to(message, "Noto'g'ri ma'lumot kiritildi /add orqali qaytadan urinib ko'ring")
@@ -94,7 +94,7 @@ def process_birth_step(message):
         cur.execute("insert into users (name,birth_date) values (%s,%s)" , (ism , birth))
         con.commit()
         cur.close()        
-        bot.send_message(message.chat.id,"Malumotlar bazasiga qo'shildi " ,reply_markup=markup )
+        bot.send_message(message.chat.id,"Malumotlar bazasiga qo'shildi "  )
         
     except Exception as e:
         bot.reply_to(message, "Noto'g'ri ma'lumot kiritildi qaytadan /add orqali qaytadan urinib ko'ring" )
@@ -102,7 +102,7 @@ def process_birth_step(message):
 
 @bot.message_handler(commands=['remove'])
 def send(message):
-        msg = bot.send_message(message.chat.id ,  "Id yuboring" , reply_markup=telegram.ReplyKeyboardRemove())
+        msg = bot.send_message(message.chat.id ,  "Id yuboring" )
         bot.register_next_step_handler(msg, process_remove_step)
         
 def process_remove_step(message):
@@ -120,7 +120,7 @@ def process_remove_step(message):
         
         con.commit()
         cur.close()        
-        bot.send_message(message.chat.id,"Malumotlar bazasidan o'chirildi " , reply_markup=markup)
+        bot.send_message(message.chat.id,"Malumotlar bazasidan o'chirildi " , reply_markup=none)
         
     except Exception as e:
         bot.reply_to(message, "Noto'g'ri ma'lumot kiritildi /remove orqali qaytadan urinib ko'ring")
@@ -142,7 +142,7 @@ def get(message):
     rows = cur.fetchall()
     for r in rows:
         
-            bot.send_message(message.chat.id , ("Id:"+str(r[2])+" Ism: "+r[0]+ " Tug'ilgan sanasi: "+str(r[1])) , reply_markup=markup)
+            bot.send_message(message.chat.id , ("Id:"+str(r[2])+" Ism: "+r[0]+ " Tug'ilgan sanasi: "+str(r[1])) )
             cur.close()
     con.close()
 
