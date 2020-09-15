@@ -27,6 +27,13 @@ con.close()
         
 @bot.message_handler(commands=[ 'start'])
 def main(message):
+    markup = types.ReplyKeyboardMarkup()
+    itembtn1 = types.KeyboardButton('/add')
+    itembtn2 = types.KeyboardButton('/remove')
+    itembtn3 = types.KeyboardButton('/get')
+    markup.row(itembtn1, itembtn2)
+    markup.row(itembtn3)
+    bot.send_message(message.chat.id ,  " ",reply_markup=markup)
     while True:  
         con = psycopg2.connect(
             host = "ec2-54-144-177-189.compute-1.amazonaws.com",
