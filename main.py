@@ -32,7 +32,8 @@ def main(message):
     itembtn1 = types.KeyboardButton('/add')
     itembtn2 = types.KeyboardButton('/remove')
     itembtn3 = types.KeyboardButton('/get')
-    markup.row(itembtn1, itembtn2)
+    markup.row(itembtn1)
+    markup.row(itembtn2)
     markup.row(itembtn3)
     bot.send_message(message.chat.id ,  "Salom",reply_markup=markup)
     while True:  
