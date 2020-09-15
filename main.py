@@ -33,7 +33,7 @@ def main(message):
     itembtn3 = types.KeyboardButton('/get')
     markup.row(itembtn1, itembtn2)
     markup.row(itembtn3)
-    bot.send_message(message.chat.id ,  " ",reply_markup=markup)
+    bot.send_message(message.chat.id ,  "Salom",reply_markup=markup)
     while True:  
         con = psycopg2.connect(
             host = "ec2-54-144-177-189.compute-1.amazonaws.com",
